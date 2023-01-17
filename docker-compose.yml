@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  web:
+    image: docker.tangerie.xyz/testimage:latest
+    ports:
+      - "8123:8123"
+    deploy:
+      mode: global
+networks:
+  app:
+    driver: overlay
