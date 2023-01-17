@@ -30,16 +30,7 @@ jobs:
         run: echo Building to "latest" and ${{env.CURRENT_TAG}}
 
       - name: Build and push
-        run: docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64 -t docker.tangerie.xyz/testimage:latest -t docker.tangerie.xyz/testimage:${{env.CURRENT_TAG}} .
+        run: docker buildx build --push --platform linux/arm64/v8,linux/amd64 -t docker.tangerie.xyz/testimage:latest -t docker.tangerie.xyz/testimage:${{env.CURRENT_TAG}} .
 
       - name: Run image
         run: docker stack deploy -c docker-compose.yml test-stack
-
-
-  # build:
-  #   runs-on: [self-hosted, media]
-
-  #   steps:
-  #   - uses: actions/checkout@v3
-  #   - name: Build and run the Docker image
-  #     run: docker compose up --build -d --no-deps
