@@ -6,6 +6,8 @@ services:
       - "8123:8123"
     deploy:
       mode: global
+      placement:
+        - CAMERA
 networks:
   app:
     driver: overlay
