@@ -38,7 +38,8 @@ def index():
     return jsonify({
         "Hostname": socket.gethostname(),
         "video": os.path.exists("/dev/video0"),
-        "cameras": get_cameras()
+        "cameras": get_cameras(),
+        "/dev": os.listdir("/dev")
     })
 
 
