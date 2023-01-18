@@ -9,7 +9,9 @@ services:
       placement:
         constraints: [node.labels.CAMERA == true]
     volumes:
-      - /dev:/dev
+      - type: bind
+        source: /dev/video0
+        target: /dev/my-video0
     environment:
       - PUID="UID"
       - PGID="GID"
