@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libhdf5-dev \
     openmpi-bin \
     wget \
+    libopencv-dev \
+    python3-opencv \
     python3-tk && \
     rm -rf /var/lib/apt/lists/*
 
