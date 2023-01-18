@@ -7,7 +7,7 @@ services:
     deploy:
       mode: global
       placement:
-        - CAMERA
+        constraints: [node.labels.CAMERA == true]
 networks:
   app:
     driver: overlay
