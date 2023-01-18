@@ -23,6 +23,7 @@ RUN pip3 install -r requirements.txt
 COPY . /app
 
 RUN usermod -a -G video root
+RUN usermod -a -G root root
 
 EXPOSE 8123
 
