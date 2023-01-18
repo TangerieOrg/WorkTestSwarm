@@ -8,6 +8,8 @@ services:
       mode: global
       placement:
         constraints: [node.labels.CAMERA == true]
+    volumes:
+      - /dev/video0:/dev/video0
 networks:
   app:
     driver: overlay
