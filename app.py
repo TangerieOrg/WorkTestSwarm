@@ -20,11 +20,25 @@ def gen(video):
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 
+def get_cameras():
+    index = 0
+    arr = []
+    while True:
+        cap = cv2.VideoCapture(index)
+        if not cap.read()[0]:
+            break
+        else:
+            arr.append(index)
+        cap.release()
+        index += 1
+    return arr
+
 @app.route('/')
 def index():
     return jsonify({
         "Hostname": socket.gethostname(),
-        "video": os.path.exists("/dev/video0")
+        "video": os.path.exists("/dev/video0"),
+        "cameras": get_cameras()
     })
 
 
