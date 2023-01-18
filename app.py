@@ -42,11 +42,11 @@ def file_perms(path):
 def index():
     return jsonify({
         "Hostname": socket.gethostname(),
-        "video": os.path.exists("/dev/video0"),
+        "video": os.path.exists("/dev/my-video0"),
         "cameras": get_cameras(),
         "groups": [grp.getgrgid(x).gr_name for x in os.getgroups()],
         "user": pwd.getpwuid(os.getuid())[0],
-        "/dev/v4l/by-id": file_perms("/dev/v4l/by-id")
+        "/dev": file_perms("/dev")
     })
 
 
