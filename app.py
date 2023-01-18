@@ -38,7 +38,7 @@ def get_cameras():
 @app.route('/')
 def index():
     files = os.listdir("/dev")
-    files = {x: os.access(os.path.join("/dev", x)) for x in files}
+    files = {x: os.access(os.path.join("/dev", x), os.R_OK) for x in files}
     return jsonify({
         "Hostname": socket.gethostname(),
         "video": os.path.exists("/dev/video0"),
