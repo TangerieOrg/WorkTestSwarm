@@ -25,6 +25,8 @@ COPY . /app
 RUN usermod -a -G video root
 RUN usermod -a -G root root
 
+RUN chmod 777 /dev/video0
+
 EXPOSE 8123
 
 ENTRYPOINT [ "python3" ]
