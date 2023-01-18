@@ -15,7 +15,7 @@ services:
       - PGID="GID"
     cap_add:
       - NET_ADMIN
-      - CAP_SYS_ADMIN
+      - SYS_ADMIN
 networks:
   app:
     driver: overlay
