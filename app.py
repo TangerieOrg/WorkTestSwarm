@@ -3,6 +3,8 @@ from flask import jsonify
 import socket
 import os
 import cv2
+import grp
+import pwd
 
 app = Flask(__name__)
 
@@ -35,11 +37,15 @@ def get_cameras():
 
 @app.route('/')
 def index():
+    files = os.listdir("/dev")
+    files = {x: os.access(os.path.join("/dev", x)) for x in files}
     return jsonify({
         "Hostname": socket.gethostname(),
         "video": os.path.exists("/dev/video0"),
         "cameras": get_cameras(),
-        "/dev": os.listdir("/dev")
+        "/dev": files,
+        "groups": [grp.getgrgid(x).gr_name for x in os.getgroups()],
+        "user": pwd.getpwuid(os.getuid())[0]
     })
 
 

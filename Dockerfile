@@ -22,6 +22,8 @@ RUN pip3 install -r requirements.txt
 
 COPY . /app
 
+RUN usermod -a -G video root
+
 EXPOSE 8123
 
 ENTRYPOINT [ "python3" ]
