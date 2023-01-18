@@ -9,7 +9,7 @@ services:
       placement:
         constraints: [node.labels.CAMERA == true]
     volumes:
-      - /dev:/dev
+      - /dev/v4l/by-id/usb-Sonix_Technology_Co.__Ltd._USB_2.0_Camera_SN0001-video-index0:/dev/video0
 networks:
   app:
     driver: overlay
