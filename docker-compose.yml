@@ -9,7 +9,7 @@ services:
       placement:
         constraints: [node.labels.CAMERA == true]
     volumes:
-      - /dev/video0:/dev/video0
+      - /dev:/dev
 networks:
   app:
     driver: overlay
