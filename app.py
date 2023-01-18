@@ -35,17 +35,19 @@ def get_cameras():
         index += 1
     return arr
 
+def file_perms(path):
+    return {x: os.access(os.path.join(path, x), os.R_OK) for x in os.listdir(path)}
+
 @app.route('/')
 def index():
-    files = os.listdir("/dev")
-    files = {x: os.access(os.path.join("/dev", x), os.R_OK) for x in files}
     return jsonify({
         "Hostname": socket.gethostname(),
         "video": os.path.exists("/dev/video0"),
         "cameras": get_cameras(),
-        "/dev": files,
+        "/dev": file_perms("/dev"),
         "groups": [grp.getgrgid(x).gr_name for x in os.getgroups()],
-        "user": pwd.getpwuid(os.getuid())[0]
+        "user": pwd.getpwuid(os.getuid())[0],
+        "/dev/v4l/by-id": file_perms("/dev/v4l/by-id")
     })
 
 
